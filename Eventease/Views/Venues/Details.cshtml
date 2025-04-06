@@ -1,0 +1,14 @@
+﻿@model Eventease.Models.Venue
+
+@{
+    ViewData["Title"] = "Venue Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h2>@Model.Name</h2>
+    <p>Location: @Model.Location</p>
+    <p>Capacity: @Model.Capacity</p>
+    <img src="@Model.ImageUrl" alt="@Model.Name" width="300" height="300" />
+</div>

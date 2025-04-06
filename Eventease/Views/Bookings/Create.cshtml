@@ -1,0 +1,38 @@
+﻿@model Eventease.Models.Booking
+
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<h1>Create Booking</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="CustomerName" class="control-label"></label>
+        <input asp-for="CustomerName" class="form-control" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BookingDate" class="control-label"></label>
+        <input asp-for="BookingDate" type="datetime-local" class="form-control" />
+        <span asp-validation-for="BookingDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EventID" class="control-label"></label>
+        <select asp-for="EventID" class="form-control">
+            <option value="">Select Event</option>
+            @foreach (var eventItem in ViewData["Events"] as SelectList)
+            {
+                <option value="@eventItem.Value">@eventItem.Text</option>
+            }
+        </select>
+        <span asp-validation-for="EventID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Booking</button>
+</form>
+
+<a href="@Url.Action("Index", "Bookings")">Back to Bookings List</a>
+

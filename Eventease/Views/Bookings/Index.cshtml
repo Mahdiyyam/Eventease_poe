@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Eventease.Models.Booking>
+
+@{
+    ViewData["Title"] = "Bookings List";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Booking Date</th>
+            <th>Event</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.CustomerName</td>
+                <td>@booking.BookingDate</td>
+                <td>@booking.Event?.Title</td>
+                <td>
+                    <!-- Edit Button -->
+                    <a href="@Url.Action("Edit", "Bookings", new { id = booking.BookingID })" class="btn btn-warning">Edit</a>
+                    <!-- Delete Button -->
+                    <a href="@Url.Action("Delete", "Bookings", new { id = booking.BookingID })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Bookings")" class="btn btn-primary">Create New Booking</a>
+

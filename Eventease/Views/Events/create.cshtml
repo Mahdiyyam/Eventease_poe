@@ -1,0 +1,39 @@
+﻿@model Eventease.Models.Event
+
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<h1>Create Event</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Date" class="control-label"></label>
+        <input asp-for="Date" type="datetime-local" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VenueID" class="control-label"></label>
+        <select asp-for="VenueID" class="form-control">
+            <option value="">Select Venue</option>
+            @foreach (var venue in ViewData["Venues"] as SelectList)
+            {
+                <option value="@venue.Value">@venue.Text</option>
+            }
+        </select>
+        <span asp-validation-for="VenueID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Event</button>
+</form>
+
+<a href="@Url.Action("Index", "Events")">Back to Events List</a>
+
+
